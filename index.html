@@ -15,28 +15,10 @@
     --border: #e4e6ea;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-  }
+  body { font-family: -apple-system, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); }
 
-  #login-screen {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 24px;
-  }
-  .login-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 32px 28px;
-    width: 100%;
-    max-width: 360px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-  }
+  #login-screen { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px; }
+  .login-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 32px 28px; width: 100%; max-width: 360px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
   .login-card h1 { font-size: 1.4rem; color: var(--primary-dark); margin-bottom: 4px; }
   .login-card p.tagline { color: var(--muted); font-size: 0.9rem; margin-bottom: 24px; }
   .field { margin-bottom: 16px; }
@@ -46,21 +28,14 @@
     border-radius: 8px; font-size: 1rem; font-family: inherit; background: #fff; color: var(--text);
   }
   .field textarea { resize: vertical; min-height: 80px; }
-  .btn {
-    display: inline-block; width: 100%; padding: 11px; background: var(--primary);
-    color: #fff; border: none; border-radius: 8px; font-size: 1rem; font-weight: 600;
-    cursor: pointer; text-align: center;
-  }
+  .btn { display: inline-block; width: 100%; padding: 11px; background: var(--primary); color: #fff; border: none; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; text-align: center; }
   .btn:active { background: var(--primary-dark); }
   .btn.secondary { background: #fff; color: var(--text); border: 1px solid var(--border); }
   .switch-link { text-align: center; margin-top: 14px; font-size: 0.85rem; color: var(--muted); }
   .switch-link a { color: var(--primary); text-decoration: none; }
 
   .screen { display: none; min-height: 100vh; }
-  header.topbar {
-    background: var(--card); border-bottom: 1px solid var(--border); padding: 14px 18px;
-    display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 10;
-  }
+  header.topbar { background: var(--card); border-bottom: 1px solid var(--border); padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 10; }
   header.topbar .brand { font-weight: 700; color: var(--primary-dark); font-size: 1.1rem; }
   header.topbar .left-group { display: flex; align-items: center; gap: 10px; }
   .back-btn { background: none; border: none; font-size: 1.1rem; color: var(--primary-dark); cursor: pointer; padding: 4px 6px; }
@@ -84,10 +59,7 @@
   .recent-item .meta { color: var(--muted); font-size: 0.78rem; }
   .status-tag { font-size: 0.72rem; padding: 2px 8px; border-radius: 999px; background: #eaf3ee; color: var(--primary-dark); }
 
-  nav.bottom-nav {
-    position: fixed; bottom: 0; left: 0; right: 0; background: var(--card); border-top: 1px solid var(--border);
-    display: flex; justify-content: space-around; padding: 8px 0 calc(8px + env(safe-area-inset-bottom, 0px));
-  }
+  nav.bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: var(--card); border-top: 1px solid var(--border); display: flex; justify-content: space-around; padding: 8px 0 calc(8px + env(safe-area-inset-bottom, 0px)); }
   nav.bottom-nav .nav-item { font-size: 0.72rem; color: var(--muted); text-align: center; display: flex; flex-direction: column; align-items: center; gap: 2px; background: none; border: none; }
   nav.bottom-nav .nav-item.active { color: var(--primary); font-weight: 600; }
 
@@ -97,10 +69,19 @@
   .obj-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 10px; }
   .obj-item { display: flex; gap: 8px; align-items: center; }
   .obj-item input { flex: 1; }
-  .obj-item button { background: none; border: 1px solid var(--border); border-radius: 6px; width: 34px; height: 34px; color: var(--muted); font-size: 1rem; }
+  .obj-item button { background: none; border: 1px solid var(--border); border-radius: 6px; width: 34px; height: 34px; color: var(--muted); font-size: 1rem; flex-shrink: 0; }
   .add-obj-btn { background: none; border: 1px dashed var(--border); border-radius: 8px; padding: 8px; width: 100%; color: var(--primary-dark); font-size: 0.85rem; font-weight: 600; }
   .form-actions { display: flex; gap: 10px; margin-top: 18px; }
   .form-actions .btn { width: auto; flex: 1; padding: 12px; }
+
+  /* ---- Slide outline (presentation screen) ---- */
+  .slide-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 10px; }
+  .slide-item { display: flex; gap: 10px; align-items: flex-start; background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 10px; }
+  .slide-num { flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%; background: var(--primary); color: #fff; font-size: 0.75rem; font-weight: 700; display: flex; align-items: center; justify-content: center; margin-top: 4px; }
+  .slide-fields { flex: 1; display: flex; flex-direction: column; gap: 6px; }
+  .slide-fields input, .slide-fields textarea { width: 100%; padding: 8px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 0.9rem; font-family: inherit; }
+  .slide-fields textarea { min-height: 50px; resize: vertical; }
+  .slide-remove { background: none; border: 1px solid var(--border); border-radius: 6px; width: 30px; height: 30px; color: var(--muted); font-size: 0.9rem; flex-shrink: 0; margin-top: 4px; }
 </style>
 </head>
 <body>
@@ -140,7 +121,7 @@
           <div class="label">Lesson Plan</div>
           <div class="desc">Topic, grade, objectives</div>
         </div>
-        <div class="create-card" onclick="openTool('presentation')">
+        <div class="create-card" onclick="showScreen('presentation-screen')">
           <div class="icon">📊</div>
           <div class="label">Presentation</div>
           <div class="desc">Slide outline & notes</div>
@@ -195,6 +176,7 @@
     </nav>
   </div>
 
+  <!-- ===== LESSON PLAN SCREEN ===== -->
   <div id="lesson-screen" class="screen">
     <header class="topbar">
       <div class="left-group">
@@ -217,12 +199,8 @@
             <label for="lesson-grade">Grade level</label>
             <select id="lesson-grade">
               <option value="">Select grade</option>
-              <option>Grade 7</option>
-              <option>Grade 8</option>
-              <option>Grade 9</option>
-              <option>Grade 10</option>
-              <option>Grade 11</option>
-              <option>Grade 12</option>
+              <option>Grade 7</option><option>Grade 8</option><option>Grade 9</option>
+              <option>Grade 10</option><option>Grade 11</option><option>Grade 12</option>
             </select>
           </div>
         </div>
@@ -261,8 +239,85 @@
       </div>
 
       <div class="form-actions">
-        <button class="btn secondary" onclick="saveDraft()">Save draft</button>
-        <button class="btn" onclick="generateWithAI()">Generate with AI</button>
+        <button class="btn secondary" onclick="saveDraft('lesson')">Save draft</button>
+        <button class="btn" onclick="generateWithAI('lesson')">Generate with AI</button>
+      </div>
+    </main>
+    <nav class="bottom-nav">
+      <button class="nav-item" onclick="showScreen('dashboard-screen')">🏠<span>Dashboard</span></button>
+      <button class="nav-item">📚<span>Library</span></button>
+      <button class="nav-item active">✨<span>Create</span></button>
+      <button class="nav-item">👤<span>Account</span></button>
+    </nav>
+  </div>
+
+  <!-- ===== PRESENTATION SCREEN ===== -->
+  <div id="presentation-screen" class="screen">
+    <header class="topbar">
+      <div class="left-group">
+        <button class="back-btn" onclick="showScreen('dashboard-screen')">← Back</button>
+        <div class="brand">New Presentation</div>
+      </div>
+    </header>
+    <main>
+      <div class="form-card">
+        <div class="field">
+          <label for="pres-title">Presentation title</label>
+          <input type="text" id="pres-title" placeholder="e.g. The Water Cycle">
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label for="pres-subject">Subject</label>
+            <input type="text" id="pres-subject" placeholder="e.g. Earth Science">
+          </div>
+          <div class="field">
+            <label for="pres-grade">Grade level</label>
+            <select id="pres-grade">
+              <option value="">Select grade</option>
+              <option>Grade 7</option><option>Grade 8</option><option>Grade 9</option>
+              <option>Grade 10</option><option>Grade 11</option><option>Grade 12</option>
+            </select>
+          </div>
+        </div>
+        <div class="field" style="margin-bottom:0;">
+          <label for="pres-audience">Audience / purpose</label>
+          <input type="text" id="pres-audience" placeholder="e.g. Whole-class introduction lecture">
+        </div>
+      </div>
+
+      <div class="form-card">
+        <label style="display:block; font-size:0.85rem; color:var(--muted); margin-bottom:10px;">Slide outline</label>
+        <div class="slide-list" id="slide-list">
+          <div class="slide-item">
+            <div class="slide-num">1</div>
+            <div class="slide-fields">
+              <input type="text" placeholder="Slide title (e.g. Title Slide)">
+              <textarea placeholder="Key points / speaker notes for this slide"></textarea>
+            </div>
+            <button class="slide-remove" onclick="removeSlide(this)">✕</button>
+          </div>
+          <div class="slide-item">
+            <div class="slide-num">2</div>
+            <div class="slide-fields">
+              <input type="text" placeholder="Slide title (e.g. What is the Water Cycle?)">
+              <textarea placeholder="Key points / speaker notes for this slide"></textarea>
+            </div>
+            <button class="slide-remove" onclick="removeSlide(this)">✕</button>
+          </div>
+        </div>
+        <button class="add-obj-btn" onclick="addSlide()">+ Add slide</button>
+      </div>
+
+      <div class="form-card">
+        <div class="field" style="margin-bottom:0;">
+          <label for="pres-notes">Overall notes</label>
+          <textarea id="pres-notes" placeholder="Any extra guidance, tone, or references for the AI to use..." style="min-height:90px;"></textarea>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button class="btn secondary" onclick="saveDraft('presentation')">Save draft</button>
+        <button class="btn" onclick="generateWithAI('presentation')">Generate with AI</button>
       </div>
     </main>
     <nav class="bottom-nav">
@@ -280,8 +335,10 @@
     target.style.display = (id === 'login-screen') ? 'flex' : 'block';
   }
   function openTool(name) {
-    alert('The ' + name + ' tool will be built next, same pattern as the lesson plan screen.');
+    alert('The ' + name + ' tool will be built next, same pattern as the other screens.');
   }
+
+  // Lesson objectives
   function addObjective() {
     const list = document.getElementById('obj-list');
     const row = document.createElement('div');
@@ -293,11 +350,34 @@
     const list = document.getElementById('obj-list');
     if (list.children.length > 1) { btn.parentElement.remove(); }
   }
-  function saveDraft() {
-    alert('This will save the lesson as a draft once the backend is connected.');
+
+  // Presentation slides
+  function renumberSlides() {
+    document.querySelectorAll('#slide-list .slide-item').forEach((item, i) => {
+      item.querySelector('.slide-num').textContent = i + 1;
+    });
   }
-  function generateWithAI() {
-    alert('This will call the AI backend to expand this into a full lesson plan.');
+  function addSlide() {
+    const list = document.getElementById('slide-list');
+    const row = document.createElement('div');
+    row.className = 'slide-item';
+    row.innerHTML = '<div class="slide-num"></div><div class="slide-fields"><input type="text" placeholder="Slide title"><textarea placeholder="Key points / speaker notes for this slide"></textarea></div><button class="slide-remove" onclick="removeSlide(this)">✕</button>';
+    list.appendChild(row);
+    renumberSlides();
+  }
+  function removeSlide(btn) {
+    const list = document.getElementById('slide-list');
+    if (list.children.length > 1) {
+      btn.parentElement.remove();
+      renumberSlides();
+    }
+  }
+
+  function saveDraft(type) {
+    alert('This will save the ' + type + ' as a draft once the backend is connected.');
+  }
+  function generateWithAI(type) {
+    alert('This will call the AI backend to expand this ' + type + ' automatically.');
   }
 </script>
 
