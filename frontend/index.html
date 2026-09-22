@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TeachMate AI</title>
+<style>
+  :root {
+    --bg: #f5f6f8;
+    --card: #ffffff;
+    --primary: #2f6f4f;
+    --primary-dark: #234f38;
+    --text: #1f2430;
+    --muted: #6b7280;
+    --border: #e4e6ea;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+  }
+
+  /* ---------- Login screen ---------- */
+  #login-screen {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .login-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 32px 28px;
+    width: 100%;
+    max-width: 360px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  }
+  .login-card h1 {
+    font-size: 1.4rem;
+    color: var(--primary-dark);
+    margin-bottom: 4px;
+  }
+  .login-card p.tagline {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-bottom: 24px;
+  }
+  .field { margin-bottom: 16px; }
+  .field label {
+    display: block;
+    font-size: 0.85rem;
+    margin-bottom: 6px;
+    color: var(--muted);
+  }
+  .field input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 1rem;
+  }
+  .btn {
+    display: inline-block;
+    width: 100%;
+    padding: 11px;
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+  }
+  .btn:active { background: var(--primary-dark); }
+  .switch-link {
+    text-align: center;
+    margin-top: 14px;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+  .switch-link a { color: var(--primary); text-decoration: none; }
+
+  /* ---------- App shell ---------- */
+  #app-screen { display: none; min-height: 100vh; }
+  header.topbar {
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  header.topbar .brand {
+    font-weight: 700;
+    color: var(--primary-dark);
+    font-size: 1.1rem;
+  }
+  header.topbar .signout {
+    font-size: 0.85rem;
+    color: var(--muted);
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 6px 10px;
+  }
+
+  main { padding: 18px; max-width: 900px; margin: 0 auto; }
+  .greeting { margin-bottom: 18px; }
+  .greeting h2 { font-size: 1.2rem; margin-bottom: 2px; }
+  .greeting p { color: var(--muted); font-size: 0.9rem; }
+
+  .section-title {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--muted);
+    margin: 22px 0 10px;
+  }
+
+  .create-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 12px;
+  }
+  .create-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    text-align: left;
+    cursor: pointer;
+  }
+  .create-card .icon { font-size: 1.5rem; margin-bottom: 8px; }
+  .create-card .label { font-weight: 600; font-size: 0.95rem; margin-bottom: 2px; }
+  .create-card .desc { font-size: 0.8rem; color: var(--muted); }
+
+  .recent-list { display: flex; flex-direction: column; gap: 8px; }
+  .recent-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+  }
+  .recent-item .meta { color: var(--muted); font-size: 0.78rem; }
+  .status-tag {
+    font-size: 0.72rem;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: #eaf3ee;
+    color: var(--primary-dark);
+  }
+
+  nav.bottom-nav {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: var(--card);
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-around;
+    padding: 8px 0 calc(8px + env(safe-area-inset-bottom, 0px));
+  }
+  nav.bottom-nav .nav-item {
+    font-size: 0.72rem;
+    color: var(--muted);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+  }
+  nav.bottom-nav .nav-item.active { color: var(--primary); font-weight: 600; }
+  main { padding-bottom: 80px; }
+</style>
+</head>
+<body>
+
+  <!-- ========== LOGIN SCREEN ========== -->
+  <div id="login-screen">
+    <div class="login-card">
+      <h1>TeachMate AI</h1>
+      <p class="tagline">Prepare, store, and reuse your teaching materials.</p>
+      <div class="field">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="you@school.edu">
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="••••••••">
+      </div>
+      <button class="btn" onclick="signIn()">Sign in</button>
+      <p class="switch-link">New here? <a href="#">Create an account</a></p>
+    </div>
+  </div>
+
+  <!-- ========== APP SHELL (dashboard) ========== -->
+  <div id="app-screen">
+    <header class="topbar">
+      <div class="brand">TeachMate AI</div>
+      <button class="signout" onclick="signOut()">Sign out</button>
+    </header>
+
+    <main>
+      <div class="greeting">
+        <h2>Welcome back</h2>
+        <p>Here's what's in your workspace.</p>
+      </div>
+
+      <div class="section-title">Create new</div>
+      <div class="create-grid">
+        <div class="create-card" onclick="openTool('lesson')">
+          <div class="icon">📘</div>
+          <div class="label">Lesson Plan</div>
+          <div class="desc">Topic, grade, objectives</div>
+        </div>
+        <div class="create-card" onclick="openTool('presentation')">
+          <div class="icon">📊</div>
+          <div class="label">Presentation</div>
+          <div class="desc">Slide outline & notes</div>
+        </div>
+        <div class="create-card" onclick="openTool('exam')">
+          <div class="icon">📝</div>
+          <div class="label">Exam / Quiz</div>
+          <div class="desc">Questions & answer key</div>
+        </div>
+        <div class="create-card" onclick="openTool('research')">
+          <div class="icon">🔎</div>
+          <div class="label">Research</div>
+          <div class="desc">Notes with sources</div>
+        </div>
+      </div>
+
+      <div class="section-title">Recent materials</div>
+      <div class="recent-list" id="recent-list">
+        <!-- Sample placeholder items — will come from backend later -->
+        <div class="recent-item">
+          <div>
+            <div>Grade 9 Biology — Cell Structure</div>
+            <div class="meta">Lesson plan · edited 2 days ago</div>
+          </div>
+          <span class="status-tag">Draft</span>
+        </div>
+        <div class="recent-item">
+          <div>
+            <div>Photosynthesis Overview</div>
+            <div class="meta">Presentation · edited 5 days ago</div>
+          </div>
+          <span class="status-tag">Saved</span>
+        </div>
+        <div class="recent-item">
+          <div>
+            <div>Unit 3 Practice Exam</div>
+            <div class="meta">Exam · edited last week</div>
+          </div>
+          <span class="status-tag">Shared</span>
+        </div>
+      </div>
+
+      <div class="section-title">Library</div>
+      <p style="color: var(--muted); font-size: 0.9rem;">
+        Your uploaded textbooks and teacher guides will appear here. Nothing uploaded yet.
+      </p>
+    </main>
+
+    <nav class="bottom-nav">
+      <div class="nav-item active">🏠<span>Dashboard</span></div>
+      <div class="nav-item">📚<span>Library</span></div>
+      <div class="nav-item">✨<span>Create</span></div>
+      <div class="nav-item">👤<span>Account</span></div>
+    </nav>
+  </div>
+
+<script>
+  // Placeholder-only logic. No real auth yet — just toggles which screen shows.
+  function signIn() {
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('app-screen').style.display = 'block';
+  }
+  function signOut() {
+    document.getElementById('app-screen').style.display = 'none';
+    document.getElementById('login-screen').style.display = 'flex';
+  }
+  function openTool(name) {
+    alert('This will open the ' + name + ' tool once the backend is connected.');
+  }
+</script>
+
+</body>
+</html>
+
