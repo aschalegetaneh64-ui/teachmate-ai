@@ -21,7 +21,6 @@
     color: var(--text);
   }
 
-  /* ---------- Login screen ---------- */
   #login-screen {
     min-height: 100vh;
     display: flex;
@@ -38,155 +37,75 @@
     max-width: 360px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.05);
   }
-  .login-card h1 {
-    font-size: 1.4rem;
-    color: var(--primary-dark);
-    margin-bottom: 4px;
-  }
-  .login-card p.tagline {
-    color: var(--muted);
-    font-size: 0.9rem;
-    margin-bottom: 24px;
-  }
+  .login-card h1 { font-size: 1.4rem; color: var(--primary-dark); margin-bottom: 4px; }
+  .login-card p.tagline { color: var(--muted); font-size: 0.9rem; margin-bottom: 24px; }
   .field { margin-bottom: 16px; }
-  .field label {
-    display: block;
-    font-size: 0.85rem;
-    margin-bottom: 6px;
-    color: var(--muted);
+  .field label { display: block; font-size: 0.85rem; margin-bottom: 6px; color: var(--muted); }
+  .field input, .field select, .field textarea {
+    width: 100%; padding: 10px 12px; border: 1px solid var(--border);
+    border-radius: 8px; font-size: 1rem; font-family: inherit; background: #fff; color: var(--text);
   }
-  .field input {
-    width: 100%;
-    padding: 10px 12px;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    font-size: 1rem;
-  }
+  .field textarea { resize: vertical; min-height: 80px; }
   .btn {
-    display: inline-block;
-    width: 100%;
-    padding: 11px;
-    background: var(--primary);
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    text-align: center;
+    display: inline-block; width: 100%; padding: 11px; background: var(--primary);
+    color: #fff; border: none; border-radius: 8px; font-size: 1rem; font-weight: 600;
+    cursor: pointer; text-align: center;
   }
   .btn:active { background: var(--primary-dark); }
-  .switch-link {
-    text-align: center;
-    margin-top: 14px;
-    font-size: 0.85rem;
-    color: var(--muted);
-  }
+  .btn.secondary { background: #fff; color: var(--text); border: 1px solid var(--border); }
+  .switch-link { text-align: center; margin-top: 14px; font-size: 0.85rem; color: var(--muted); }
   .switch-link a { color: var(--primary); text-decoration: none; }
 
-  /* ---------- App shell ---------- */
-  #app-screen { display: none; min-height: 100vh; }
+  .screen { display: none; min-height: 100vh; }
   header.topbar {
-    background: var(--card);
-    border-bottom: 1px solid var(--border);
-    padding: 14px 18px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: sticky;
-    top: 0;
-    z-index: 10;
+    background: var(--card); border-bottom: 1px solid var(--border); padding: 14px 18px;
+    display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 10;
   }
-  header.topbar .brand {
-    font-weight: 700;
-    color: var(--primary-dark);
-    font-size: 1.1rem;
-  }
-  header.topbar .signout {
-    font-size: 0.85rem;
-    color: var(--muted);
-    background: none;
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 6px 10px;
-  }
+  header.topbar .brand { font-weight: 700; color: var(--primary-dark); font-size: 1.1rem; }
+  header.topbar .left-group { display: flex; align-items: center; gap: 10px; }
+  .back-btn { background: none; border: none; font-size: 1.1rem; color: var(--primary-dark); cursor: pointer; padding: 4px 6px; }
+  header.topbar .signout { font-size: 0.85rem; color: var(--muted); background: none; border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; }
 
-  main { padding: 18px; max-width: 900px; margin: 0 auto; }
+  main { padding: 18px; max-width: 900px; margin: 0 auto; padding-bottom: 80px; }
   .greeting { margin-bottom: 18px; }
   .greeting h2 { font-size: 1.2rem; margin-bottom: 2px; }
   .greeting p { color: var(--muted); font-size: 0.9rem; }
 
-  .section-title {
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
-    color: var(--muted);
-    margin: 22px 0 10px;
-  }
+  .section-title { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.03em; color: var(--muted); margin: 22px 0 10px; }
 
-  .create-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 12px;
-  }
-  .create-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 16px;
-    text-align: left;
-    cursor: pointer;
-  }
+  .create-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+  .create-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; text-align: left; cursor: pointer; }
   .create-card .icon { font-size: 1.5rem; margin-bottom: 8px; }
   .create-card .label { font-weight: 600; font-size: 0.95rem; margin-bottom: 2px; }
   .create-card .desc { font-size: 0.8rem; color: var(--muted); }
 
   .recent-list { display: flex; flex-direction: column; gap: 8px; }
-  .recent-item {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 12px 14px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.9rem;
-  }
+  .recent-item { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem; }
   .recent-item .meta { color: var(--muted); font-size: 0.78rem; }
-  .status-tag {
-    font-size: 0.72rem;
-    padding: 2px 8px;
-    border-radius: 999px;
-    background: #eaf3ee;
-    color: var(--primary-dark);
-  }
+  .status-tag { font-size: 0.72rem; padding: 2px 8px; border-radius: 999px; background: #eaf3ee; color: var(--primary-dark); }
 
   nav.bottom-nav {
-    position: fixed;
-    bottom: 0; left: 0; right: 0;
-    background: var(--card);
-    border-top: 1px solid var(--border);
-    display: flex;
-    justify-content: space-around;
-    padding: 8px 0 calc(8px + env(safe-area-inset-bottom, 0px));
+    position: fixed; bottom: 0; left: 0; right: 0; background: var(--card); border-top: 1px solid var(--border);
+    display: flex; justify-content: space-around; padding: 8px 0 calc(8px + env(safe-area-inset-bottom, 0px));
   }
-  nav.bottom-nav .nav-item {
-    font-size: 0.72rem;
-    color: var(--muted);
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2px;
-  }
+  nav.bottom-nav .nav-item { font-size: 0.72rem; color: var(--muted); text-align: center; display: flex; flex-direction: column; align-items: center; gap: 2px; background: none; border: none; }
   nav.bottom-nav .nav-item.active { color: var(--primary); font-weight: 600; }
-  main { padding-bottom: 80px; }
+
+  .form-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 18px; margin-bottom: 14px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 480px) { .form-row { grid-template-columns: 1fr; } }
+  .obj-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 10px; }
+  .obj-item { display: flex; gap: 8px; align-items: center; }
+  .obj-item input { flex: 1; }
+  .obj-item button { background: none; border: 1px solid var(--border); border-radius: 6px; width: 34px; height: 34px; color: var(--muted); font-size: 1rem; }
+  .add-obj-btn { background: none; border: 1px dashed var(--border); border-radius: 8px; padding: 8px; width: 100%; color: var(--primary-dark); font-size: 0.85rem; font-weight: 600; }
+  .form-actions { display: flex; gap: 10px; margin-top: 18px; }
+  .form-actions .btn { width: auto; flex: 1; padding: 12px; }
 </style>
 </head>
 <body>
 
-  <!-- ========== LOGIN SCREEN ========== -->
-  <div id="login-screen">
+  <div id="login-screen" class="screen" style="display:flex;">
     <div class="login-card">
       <h1>TeachMate AI</h1>
       <p class="tagline">Prepare, store, and reuse your teaching materials.</p>
@@ -198,18 +117,16 @@
         <label for="password">Password</label>
         <input type="password" id="password" placeholder="••••••••">
       </div>
-      <button class="btn" onclick="signIn()">Sign in</button>
+      <button class="btn" onclick="showScreen('dashboard-screen')">Sign in</button>
       <p class="switch-link">New here? <a href="#">Create an account</a></p>
     </div>
   </div>
 
-  <!-- ========== APP SHELL (dashboard) ========== -->
-  <div id="app-screen">
+  <div id="dashboard-screen" class="screen">
     <header class="topbar">
       <div class="brand">TeachMate AI</div>
-      <button class="signout" onclick="signOut()">Sign out</button>
+      <button class="signout" onclick="showScreen('login-screen')">Sign out</button>
     </header>
-
     <main>
       <div class="greeting">
         <h2>Welcome back</h2>
@@ -218,7 +135,7 @@
 
       <div class="section-title">Create new</div>
       <div class="create-grid">
-        <div class="create-card" onclick="openTool('lesson')">
+        <div class="create-card" onclick="showScreen('lesson-screen')">
           <div class="icon">📘</div>
           <div class="label">Lesson Plan</div>
           <div class="desc">Topic, grade, objectives</div>
@@ -242,7 +159,6 @@
 
       <div class="section-title">Recent materials</div>
       <div class="recent-list" id="recent-list">
-        <!-- Sample placeholder items — will come from backend later -->
         <div class="recent-item">
           <div>
             <div>Grade 9 Biology — Cell Structure</div>
@@ -271,27 +187,117 @@
         Your uploaded textbooks and teacher guides will appear here. Nothing uploaded yet.
       </p>
     </main>
-
     <nav class="bottom-nav">
-      <div class="nav-item active">🏠<span>Dashboard</span></div>
-      <div class="nav-item">📚<span>Library</span></div>
-      <div class="nav-item">✨<span>Create</span></div>
-      <div class="nav-item">👤<span>Account</span></div>
+      <button class="nav-item active">🏠<span>Dashboard</span></button>
+      <button class="nav-item">📚<span>Library</span></button>
+      <button class="nav-item" onclick="showScreen('lesson-screen')">✨<span>Create</span></button>
+      <button class="nav-item">👤<span>Account</span></button>
+    </nav>
+  </div>
+
+  <div id="lesson-screen" class="screen">
+    <header class="topbar">
+      <div class="left-group">
+        <button class="back-btn" onclick="showScreen('dashboard-screen')">← Back</button>
+        <div class="brand">New Lesson Plan</div>
+      </div>
+    </header>
+    <main>
+      <div class="form-card">
+        <div class="field">
+          <label for="lesson-title">Lesson title</label>
+          <input type="text" id="lesson-title" placeholder="e.g. Introduction to Photosynthesis">
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label for="lesson-subject">Subject</label>
+            <input type="text" id="lesson-subject" placeholder="e.g. Biology">
+          </div>
+          <div class="field">
+            <label for="lesson-grade">Grade level</label>
+            <select id="lesson-grade">
+              <option value="">Select grade</option>
+              <option>Grade 7</option>
+              <option>Grade 8</option>
+              <option>Grade 9</option>
+              <option>Grade 10</option>
+              <option>Grade 11</option>
+              <option>Grade 12</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label for="lesson-duration">Duration</label>
+            <input type="text" id="lesson-duration" placeholder="e.g. 45 minutes">
+          </div>
+          <div class="field">
+            <label for="lesson-date">Date</label>
+            <input type="date" id="lesson-date">
+          </div>
+        </div>
+      </div>
+
+      <div class="form-card">
+        <label style="display:block; font-size:0.85rem; color:var(--muted); margin-bottom:10px;">Learning objectives</label>
+        <div class="obj-list" id="obj-list">
+          <div class="obj-item">
+            <input type="text" placeholder="Students will be able to...">
+            <button onclick="removeObjective(this)">✕</button>
+          </div>
+        </div>
+        <button class="add-obj-btn" onclick="addObjective()">+ Add objective</button>
+      </div>
+
+      <div class="form-card">
+        <div class="field">
+          <label for="lesson-materials">Materials needed</label>
+          <textarea id="lesson-materials" placeholder="e.g. Whiteboard, diagrams, worksheets"></textarea>
+        </div>
+        <div class="field" style="margin-bottom:0;">
+          <label for="lesson-notes">Notes / procedure</label>
+          <textarea id="lesson-notes" placeholder="Outline how the lesson will run..." style="min-height:120px;"></textarea>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button class="btn secondary" onclick="saveDraft()">Save draft</button>
+        <button class="btn" onclick="generateWithAI()">Generate with AI</button>
+      </div>
+    </main>
+    <nav class="bottom-nav">
+      <button class="nav-item" onclick="showScreen('dashboard-screen')">🏠<span>Dashboard</span></button>
+      <button class="nav-item">📚<span>Library</span></button>
+      <button class="nav-item active">✨<span>Create</span></button>
+      <button class="nav-item">👤<span>Account</span></button>
     </nav>
   </div>
 
 <script>
-  // Placeholder-only logic. No real auth yet — just toggles which screen shows.
-  function signIn() {
-    document.getElementById('login-screen').style.display = 'none';
-    document.getElementById('app-screen').style.display = 'block';
-  }
-  function signOut() {
-    document.getElementById('app-screen').style.display = 'none';
-    document.getElementById('login-screen').style.display = 'flex';
+  function showScreen(id) {
+    document.querySelectorAll('.screen').forEach(s => s.style.display = 'none');
+    const target = document.getElementById(id);
+    target.style.display = (id === 'login-screen') ? 'flex' : 'block';
   }
   function openTool(name) {
-    alert('This will open the ' + name + ' tool once the backend is connected.');
+    alert('The ' + name + ' tool will be built next, same pattern as the lesson plan screen.');
+  }
+  function addObjective() {
+    const list = document.getElementById('obj-list');
+    const row = document.createElement('div');
+    row.className = 'obj-item';
+    row.innerHTML = '<input type="text" placeholder="Students will be able to..."><button onclick="removeObjective(this)">✕</button>';
+    list.appendChild(row);
+  }
+  function removeObjective(btn) {
+    const list = document.getElementById('obj-list');
+    if (list.children.length > 1) { btn.parentElement.remove(); }
+  }
+  function saveDraft() {
+    alert('This will save the lesson as a draft once the backend is connected.');
+  }
+  function generateWithAI() {
+    alert('This will call the AI backend to expand this into a full lesson plan.');
   }
 </script>
 
