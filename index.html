@@ -74,7 +74,6 @@
   .form-actions { display: flex; gap: 10px; margin-top: 18px; }
   .form-actions .btn { width: auto; flex: 1; padding: 12px; }
 
-  /* ---- Slide outline (presentation screen) ---- */
   .slide-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 10px; }
   .slide-item { display: flex; gap: 10px; align-items: flex-start; background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 10px; }
   .slide-num { flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%; background: var(--primary); color: #fff; font-size: 0.75rem; font-weight: 700; display: flex; align-items: center; justify-content: center; margin-top: 4px; }
@@ -83,7 +82,6 @@
   .slide-fields textarea { min-height: 50px; resize: vertical; }
   .slide-remove { background: none; border: 1px solid var(--border); border-radius: 6px; width: 30px; height: 30px; color: var(--muted); font-size: 0.9rem; flex-shrink: 0; margin-top: 4px; }
 
-  /* ---- Exam question builder ---- */
   .q-type-row { display: flex; gap: 8px; margin-bottom: 6px; flex-wrap: wrap; }
   .q-type-row select { flex: 1; min-width: 140px; }
   .q-points { width: 90px !important; flex: none !important; }
@@ -94,6 +92,12 @@
   .tf-options { display: flex; gap: 16px; margin-top: 4px; font-size: 0.85rem; }
   .tf-options label { display: flex; align-items: center; gap: 6px; }
   .exam-meta-note { font-size: 0.78rem; color: var(--muted); margin-top: -4px; margin-bottom: 8px; }
+
+  /* ---- Research sources ---- */
+  .source-item { display: flex; gap: 8px; align-items: flex-start; background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 10px; }
+  .source-fields { flex: 1; display: flex; flex-direction: column; gap: 6px; }
+  .source-fields input, .source-fields select { width: 100%; padding: 8px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 0.9rem; font-family: inherit; }
+  .source-type-badge { font-size: 0.7rem; color: var(--muted); }
 </style>
 </head>
 <body>
@@ -143,7 +147,7 @@
           <div class="label">Exam / Quiz</div>
           <div class="desc">Questions & answer key</div>
         </div>
-        <div class="create-card" onclick="openTool('research')">
+        <div class="create-card" onclick="showScreen('research-screen')">
           <div class="icon">🔎</div>
           <div class="label">Research</div>
           <div class="desc">Notes with sources</div>
@@ -383,8 +387,6 @@
       <div class="form-card">
         <label style="display:block; font-size:0.85rem; color:var(--muted); margin-bottom:10px;">Questions</label>
         <div class="slide-list" id="question-list">
-
-          <!-- Question 1: multiple choice example -->
           <div class="slide-item">
             <div class="slide-num">1</div>
             <div class="slide-fields">
@@ -408,7 +410,6 @@
             </div>
             <button class="slide-remove" onclick="removeQuestion(this)">✕</button>
           </div>
-
         </div>
         <button class="add-obj-btn" onclick="addQuestion()">+ Add question</button>
       </div>
@@ -433,6 +434,76 @@
     </nav>
   </div>
 
+  <!-- ===== RESEARCH SCREEN ===== -->
+  <div id="research-screen" class="screen">
+    <header class="topbar">
+      <div class="left-group">
+        <button class="back-btn" onclick="showScreen('dashboard-screen')">← Back</button>
+        <div class="brand">New Research</div>
+      </div>
+    </header>
+    <main>
+      <div class="form-card">
+        <div class="field">
+          <label for="research-title">Research topic</label>
+          <input type="text" id="research-title" placeholder="e.g. Impact of Renewable Energy on Ethiopian Agriculture">
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label for="research-subject">Subject area</label>
+            <input type="text" id="research-subject" placeholder="e.g. Environmental Science">
+          </div>
+          <div class="field">
+            <label for="research-purpose">Purpose</label>
+            <select id="research-purpose">
+              <option value="">Select purpose</option>
+              <option>Lesson background</option>
+              <option>Student handout</option>
+              <option>Personal reference</option>
+              <option>Curriculum planning</option>
+            </select>
+          </div>
+        </div>
+        <div class="field" style="margin-bottom:0;">
+          <label for="research-question">Key question(s) to explore</label>
+          <textarea id="research-question" placeholder="What do you want this research to answer?"></textarea>
+        </div>
+      </div>
+
+      <div class="form-card">
+        <label style="display:block; font-size:0.85rem; color:var(--muted); margin-bottom:10px;">Notes</label>
+        <div class="field" style="margin-bottom:0;">
+          <textarea id="research-notes" placeholder="Jot down findings, quotes, or summaries as you go..." style="min-height:160px;"></textarea>
+        </div>
+      </div>
+
+      <div class="form-card">
+        <label style="display:block; font-size:0.85rem; color:var(--muted); margin-bottom:10px;">Sources</label>
+        <div class="obj-list" id="source-list">
+          <div class="source-item">
+            <div class="source-fields">
+              <input type="text" placeholder="Source title or citation">
+              <input type="text" placeholder="URL or reference (optional)">
+            </div>
+            <button class="slide-remove" onclick="removeSource(this)">✕</button>
+          </div>
+        </div>
+        <button class="add-obj-btn" onclick="addSource()">+ Add source</button>
+      </div>
+
+      <div class="form-actions">
+        <button class="btn secondary" onclick="saveDraft('research')">Save draft</button>
+        <button class="btn" onclick="generateWithAI('research')">Generate with AI</button>
+      </div>
+    </main>
+    <nav class="bottom-nav">
+      <button class="nav-item" onclick="showScreen('dashboard-screen')">🏠<span>Dashboard</span></button>
+      <button class="nav-item">📚<span>Library</span></button>
+      <button class="nav-item active">✨<span>Create</span></button>
+      <button class="nav-item">👤<span>Account</span></button>
+    </nav>
+  </div>
+
 <script>
   function showScreen(id) {
     document.querySelectorAll('.screen').forEach(s => s.style.display = 'none');
@@ -443,7 +514,6 @@
     alert('The ' + name + ' tool will be built next, same pattern as the other screens.');
   }
 
-  // Lesson objectives
   function addObjective() {
     const list = document.getElementById('obj-list');
     const row = document.createElement('div');
@@ -456,7 +526,6 @@
     if (list.children.length > 1) { btn.parentElement.remove(); }
   }
 
-  // Presentation slides
   function renumberList(listId, numClass) {
     document.querySelectorAll('#' + listId + ' .' + numClass).forEach((el, i) => {
       el.textContent = i + 1;
@@ -478,7 +547,6 @@
     }
   }
 
-  // Exam questions
   let qCounter = 1;
   function mcBlock(qId) {
     return '<div class="mc-options">' +
@@ -537,6 +605,19 @@
     } else {
       answerArea.innerHTML = shortBlock();
     }
+  }
+
+  // Research sources
+  function addSource() {
+    const list = document.getElementById('source-list');
+    const row = document.createElement('div');
+    row.className = 'source-item';
+    row.innerHTML = '<div class="source-fields"><input type="text" placeholder="Source title or citation"><input type="text" placeholder="URL or reference (optional)"></div><button class="slide-remove" onclick="removeSource(this)">✕</button>';
+    list.appendChild(row);
+  }
+  function removeSource(btn) {
+    const list = document.getElementById('source-list');
+    if (list.children.length > 1) { btn.parentElement.remove(); }
   }
 
   function saveDraft(type) {
